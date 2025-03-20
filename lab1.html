@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Rysunek twarzy w Canvas</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #00FFFF; 
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: #00FFFF;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="300"></canvas>
+
+<script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    //buzia
+    ctx.beginPath();
+    ctx.ellipse(250, 150, 120, 80, 0, 0, 2 * Math.PI);
+    ctx.fillStyle = "#FF00FF"; 
+    ctx.fill();
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Oczy
+    function drawEye(x, y) {
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, 2 * Math.PI); // białko oka
+        ctx.fillStyle = "white";
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, 2 * Math.PI); // źrenica
+        ctx.fillStyle = "black";
+        ctx.fill();
+    }
+
+    drawEye(210, 130); // lewe oko
+    drawEye(290, 130); // prawe oko
+
+    // usta
+    ctx.beginPath();
+    ctx.moveTo(220, 180);
+    ctx.bezierCurveTo(235, 205, 265, 205, 280, 180);
+    ctx.bezierCurveTo(265, 190, 235, 190, 220, 180); 
+    ctx.fillStyle = "black";
+    ctx.fill();
+
+    // Zęby
+    ctx.fillStyle = "white";
+    ctx.fillRect(242, 190, 6, 6); 
+    ctx.fillStyle = "white";
+    ctx.fillRect(250, 190, 6, 6); 
+
+    //linia do uśmiechu
+    ctx.beginPath();
+    ctx.moveTo(220, 178);       
+    ctx.lineTo(215, 182);       
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(280, 178);       
+    ctx.lineTo(285, 182);       
+    ctx.stroke();
+
+
+</script>
+</body>
+</html>
